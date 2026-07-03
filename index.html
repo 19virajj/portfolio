@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viraj Jadhav — AI/ML Engineer</title>
+<meta name="description" content="Viraj Jadhav — AI/ML engineer building GenAI and agentic systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --surface: #131313;
+    --border: #242424;
+    --text: #F5F4F1;
+    --text-dim: #8F8D89;
+    --text-dimmer: #57554F;
+    --accent: #46A758;
+    --accent-text: #0A0A0A;
+    --sans: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  /* cursor-follow glow, monochrome, restrained */
+  #glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: radial-gradient(600px circle at var(--x, 50%) var(--y, 20%), rgba(255,255,255,0.05), transparent 40%);
+    z-index: 1;
+    transition: background 0.1s ease;
+  }
+
+  a { color: inherit; }
+  .wrap { max-width: 840px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav-mark { font-family: var(--mono); font-size: 13px; font-weight: 500; text-decoration: none; color: var(--text); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); text-decoration: none; transition: color 0.15s ease; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+
+  /* ---------- HERO ---------- */
+  header.hero { padding: 120px 0 88px; position: relative; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12.5px; color: var(--text-dimmer);
+    letter-spacing: 0.06em; margin-bottom: 28px; display: flex; align-items: center; gap: 8px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+  h1 {
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(44px, 8vw, 76px); line-height: 0.98; letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  .role-line { font-size: clamp(18px, 2.4vw, 21px); color: var(--text-dim); max-width: 520px; margin-bottom: 44px; font-weight: 400; }
+  .role-line b { color: var(--text); font-weight: 600; }
+
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-bottom: 48px; }
+  .btn-primary {
+    font-family: var(--mono); font-size: 13px; padding: 13px 24px; border-radius: 100px;
+    background: var(--accent); color: var(--accent-text); font-weight: 500; text-decoration: none;
+    transition: opacity 0.15s ease, background 0.3s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { opacity: 0.82; }
+  .text-link {
+    font-family: var(--mono); font-size: 13px; color: var(--text-dim); text-decoration: none;
+    position: relative; padding-bottom: 2px;
+  }
+  .text-link::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: var(--accent);
+    transition: right 0.2s ease, background 0.3s ease;
+  }
+  .text-link:hover::after, .text-link:focus-visible::after { right: 0; }
+  .text-link:hover, .text-link:focus-visible { color: var(--text); }
+
+  .meta-line { font-family: var(--mono); font-size: 12.5px; color: var(--text-dimmer); }
+  .meta-line span { color: var(--text-dim); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 72px 0; }
+  .section-label {
+    font-family: var(--mono); font-size: 12px; color: var(--text-dimmer);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text { font-size: 17px; color: var(--text-dim); max-width: 580px; }
+  .about-text p + p { margin-top: 16px; }
+  .about-text b { color: var(--accent); font-weight: 600; transition: color 0.3s ease; }
+
+  /* ---------- WORK (whitespace-separated, no cards, no dividers) ---------- */
+  .work-list { display: flex; flex-direction: column; gap: 64px; }
+  .work-item { display: grid; grid-template-columns: 140px 1fr; gap: 24px; }
+  .work-tag { font-family: var(--mono); font-size: 12px; color: var(--text-dimmer); padding-top: 4px; }
+  .work-title { font-family: var(--sans); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .work-desc { color: var(--text-dim); font-size: 15px; max-width: 480px; margin-bottom: 14px; }
+  .work-desc b { color: var(--accent); font-weight: 600; transition: color 0.3s ease; }
+  .work-stack { font-family: var(--mono); font-size: 12px; color: var(--text-dimmer); margin-bottom: 14px; }
+  .work-links { display: flex; gap: 20px; }
+  .work-links a { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); text-decoration: none; }
+  .work-links a:hover, .work-links a:focus-visible { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .work-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer { padding: 72px 0 56px; border-top: 1px solid var(--border); }
+  .footer-actions { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin: 28px 0 48px; }
+  .footer-bottom { font-family: var(--mono); font-size: 12.5px; color: var(--text-dimmer); }
+
+  ::selection { background: rgba(70,167,88,0.18); color: var(--text); }
+</style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="nav-mark">viraj.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#work">work</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>OPEN TO WORK · PUNE, INDIA</div>
+    <h1>Viraj Jadhav</h1>
+    <p class="role-line">AI/ML engineer moving from <b>traditional ML</b> into <b>GenAI &amp; agentic systems</b>.</p>
+    <div class="hero-actions">
+      <a href="/resume.pdf" class="btn-primary">Resume ↓</a>
+      <a href="mailto:you@example.com" class="text-link">Email</a>
+      <a href="https://github.com/yourusername" class="text-link">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" class="text-link">LinkedIn</a>
+    </div>
+    <div class="meta-line">Focus — <span>RAG · Agents · Fine-tuning</span> &nbsp;·&nbsp; Open to — <span>Remote</span></div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-label">About</div>
+    <div class="about-text">
+      <p>Three years into AI/ML, mostly self-taught, now moving deliberately into generative and agentic AI — systems that retrieve and reason, not just classify.</p>
+      <p>I care more about things working in production than looking good in a demo, which means evaluation and observability show up in everything I build. Outside of work, that same instinct shows up in training for half marathons — I track every run down to the split.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-label">Selected work</div>
+    <div class="work-list">
+
+      <div class="work-item">
+        <span class="work-tag">01 — RAG</span>
+        <div>
+          <h3 class="work-title">Financial filings RAG</h3>
+          <p class="work-desc">Hybrid retrieval and reranking over financial filings. <b>0.94</b> faithfulness, <b>0.91</b> context recall, tracked through a proper eval harness.</p>
+          <div class="work-stack">Qdrant · FastAPI · Langfuse · RAGAS</div>
+          <div class="work-links">
+            <a href="#">Demo ↗</a>
+            <a href="#">Source ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <span class="work-tag">02 — Agents</span>
+        <div>
+          <h3 class="work-title">Tool-using document agent</h3>
+          <p class="work-desc">A LangGraph agent that plans and calls tools across multi-step document tasks. <b>87%</b> task success across the test set.</p>
+          <div class="work-stack">LangGraph · Langfuse</div>
+          <div class="work-links">
+            <a href="#">Demo ↗</a>
+            <a href="#">Source ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <span class="work-tag">03 — Fine-tuning</span>
+        <div>
+          <h3 class="work-title">LoRA fine-tune, benchmarked</h3>
+          <p class="work-desc">A QLoRA fine-tune with a documented before/after benchmark — <b>+14%</b> eval lift, and the reasoning for when it beats RAG alone.</p>
+          <div class="work-stack">PEFT · bitsandbytes</div>
+          <div class="work-links">
+            <a href="#">Writeup ↗</a>
+            <a href="#">Source ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-label">Get in touch</div>
+    <div class="about-text">
+      <p>Currently interviewing for GenAI and agentic AI roles — LLMOps platforms, fintech, and Pune-based GCCs.</p>
+    </div>
+    <div class="footer-actions">
+      <a href="mailto:you@example.com" class="btn-primary">Email me</a>
+      <a href="https://github.com/yourusername" class="text-link">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" class="text-link">LinkedIn</a>
+      <a href="/resume.pdf" class="text-link">Resume</a>
+    </div>
+    <div class="footer-bottom">— designed, measured, shipped, in that order.</div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('mousemove', (e) => {
+    document.getElementById('glow').style.setProperty('--x', e.clientX + 'px');
+    document.getElementById('glow').style.setProperty('--y', e.clientY + 'px');
+  });
+</script>
+
+</body>
+</html>
